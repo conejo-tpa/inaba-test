@@ -1,0 +1,31 @@
+:root{--bg:#eef0ee;--card:#fff;--ink:#1d2a2a;--mute:#5d6b6b;--line:#cfd6d4;--accent:#0f6b63;--tile:#cfe5e1;--cut:#f2c9a0;--grout:#8fa19e;--txt:#3b2a14;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121818;--card:#1b2424;--ink:#e6eeec;--mute:#9aaba8;--line:#2f3d3c;--accent:#4fc3b6;--tile:#2d5a55;--cut:#8a5a32;--grout:#0e1414;--txt:#fff3e2;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+main{max-width:900px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.5rem;margin:0 0 4px}
+p.sub{margin:0 0 20px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}}
+fieldset{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0}
+legend{font-weight:600;padding:0 6px}
+.row{display:flex;gap:10px;margin:8px 0}
+label{display:flex;flex-direction:column;flex:1;font-size:.88rem;color:var(--mute)}
+input,select{margin-top:4px;padding:9px 10px;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;width:100%}
+input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.res,.draw{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+.big{font-size:2.2rem;font-weight:700;color:var(--accent);line-height:1.1}
+dl{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin:12px 0 0}
+dt{color:var(--mute)}dd{margin:0;font-weight:600;text-align:right}
+h2{font-size:1.05rem;margin:18px 0 6px}
+.note{font-size:.85rem;color:var(--mute);margin-top:10px}
+.warn{color:#b34a00;font-weight:600;font-size:.9rem;margin-top:8px}
+.err{color:#c0392b;font-weight:600}
+.draw{overflow-x:auto}
+svg{display:block;width:100%;height:auto;min-width:420px}
+.leg{display:flex;gap:16px;font-size:.85rem;color:var(--mute);margin-top:8px;flex-wrap:wrap}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:5px 4px;border-bottom:1px solid var(--line);text-align:left}
+td:last-child,th:last-child{text-align:right}
