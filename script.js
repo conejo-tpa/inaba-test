@@ -39,7 +39,7 @@ function calc(){
   $("lgE").textContent=fixed?"Molduras del perímetro":"Estructura del cielorraso";
   $("lgW").textContent=ceil?"Cielorraso (en metros)":"Pared (en metros)";
   $("lbH").textContent=ceil?"Largo (m)":"Alto (m)";
-  $("ttl").textContent=ceil?"Plano de cielorraso":"Plano de placas para la pared";
+  $("ttl").textContent=ceil?"Plano de cielorraso":"Plano de placas para revestimiento";
   const g=rem?0:(+$("jt").value||0)/10, extra=+$("wa").value||0, stag=ceil?false:$("mode").value==="stag";
   const res=$("res");
   if(!(W>0&&H>0&&tw>0&&th>0)){res.innerHTML='<span class="err">Completá todas las medidas con números mayores a 0.</span>';$("svg").innerHTML="";return}
@@ -99,7 +99,7 @@ function calc(){
     <tr><td>Largueros de ${f(LL/100,2)} m${splice&&perLine>1?" (empalmados)":" (sin empalme)"}</td><td>${larg}</td></tr>
     <tr><td>Cortitos de ${f(CL/100,2)} m${cortCut?` (${cortCut} se cortan a medida)`:""}</td><td>${cort}</td></tr>
     <tr><td>Molduras de ${f(ML/100,2)} m (perímetro ${f(2*(W+H)/100,2)} m)</td><td>${molds}</td></tr></table>
-    <p class="note">${splice&&perLine>1?`${lines} líneas de larguero de ${f(lineLen/100,2)} m, cada una con ${perLine} trozos empalmados. Si cortás los trozos parejos, son ${perLine} de ${f(lineLen/perLine,1)} cm.${last<LL*0.5?` El último trozo suelto mediría ${f(last,1)} cm y queda flojo, por eso conviene cortarlos parejos.`:""} Si empalmás aprovechando los recortes, el mínimo sería ${largMin} largueros.`:`${lines} líneas de larguero, cada una de un solo larguero cortado a ${f(lineLen/100,2)} m.`}</p>`;
+    <p class="note">${splice&&perLine>1?`${lines} líneas de larguero de ${f(lineLen/100,2)} m, cada una con ${perLine} cortes empalmados. Si cortás los trozos parejos, son ${perLine} de ${f(lineLen/perLine,1)} cm.${last<LL*0.5?` El último trozo suelto mediría ${f(last,1)} cm y queda flojo, por eso conviene cortarlos parejos.`:""} Si empalmás aprovechando los recortes, el mínimo sería ${largMin} largueros.`:`${lines} líneas de larguero, cada una de un solo larguero cortado a ${f(lineLen/100,2)} m.`}</p>`;
   }
   const lr=ps=>{const a=ps[0],b=ps[ps.length-1];return [a.full?0:a.w,b.full?0:b.w]};
   const sd=v=>v>0?f(v)+" cm":"entera";
@@ -107,7 +107,7 @@ function calc(){
   const shifts=[];
   if(fx.sh) shifts.push(`${f(Math.abs(fx.d))} cm hacia la ${fx.d>0?"derecha":"izquierda"}`);
   if(fy.sh) shifts.push(`${f(Math.abs(fy.d))} cm hacia ${fy.d>0?"abajo":"arriba"}`);
-  const shiftNote=shifts.length?`<p class="note">Para evitar cortes menores a ${f(req)} cm se corrió el plano ${shifts.join(" y ")}. Queda un poco descentrado, pero sin trozos finitos.</p>`:"";
+  const shiftNote=shifts.length?`<p class="note">Para evitar cortes menores a ${f(req)} cm se corrió el plano ${shifts.join(" y ")}. Queda un poco descentrado, pero sin cortes finitos.</p>`:"";
   const warn=mc<req-0.05?`<div class="warn">Con estas medidas no se logra un corte de ${f(req)} cm o más; el mejor posible es de ${f(mc)} cm. Probá cambiar la junta, la disposición o el corte mínimo deseado.</div>`:"";
 
   res.innerHTML=`<div class="big">${buy} placas para comprar</div>
@@ -119,7 +119,7 @@ function calc(){
   <dt>Cortes en altura (arriba / abajo)</dt><dd>${sd(vt)} / ${sd(vb)}</dd>
   </dl>${mats}${warn}${shiftNote}
   ${rows?`<h2>Cortes necesarios</h2><table><tr><th>Medida del trozo</th><th>Cantidad</th></tr>${rows}</table>`:""}
-  <p class="note">Cada placa cortada se cuenta como una placa entera. Las sobras (el otro trozo de cada placa) podrían reutilizarse en otros cortes, así que el desperdicio real puede ser menor.</p>`;
+  <p class="note">Cada placa cortada se cuenta como una placa entera. Las sobras (el otro corte de cada placa) podrían reutilizarse en otros cortes, así que el desperdicio real puede ser menor.</p>`;
 
   draw(W,H,pieces,rem?{cols:hA,rows:rowsP,runV:$("run").value==="v"}:null);
 }
