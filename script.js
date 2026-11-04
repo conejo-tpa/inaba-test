@@ -34,7 +34,7 @@ function fit(L,t,g,base,stag,req,cent){
 function calc(){
   const W=+$("pw").value*100, H=+$("ph").value*100, tw=+$("tw").value, th=+$("th").value;
   const ceil=$("surf").value==="ceil", fixed=ceil&&$("ctype").value==="fix", rem=ceil&&!fixed;
-  $("lct").hidden=!ceil; $("est").hidden=!ceil; $("lmode").hidden=ceil; $("ljt").hidden=rem; $("legc").hidden=!rem;
+  $("fct").hidden=!ceil; $("fct").style.display=ceil?"":"none"; $("est").hidden=!ceil; $("est").style.display=ceil?"":"none"; $("lmode").hidden=ceil; $("ljt").hidden=rem; $("legc").hidden=!rem;
   $("er1").hidden=fixed; $("lrun").hidden=fixed; $("er3").hidden=fixed; if(fixed) $("spmsg").hidden=true;
   $("lgE").textContent=fixed?"Molduras del perímetro":"Estructura del cielorraso";
   $("lgW").textContent=ceil?"Cielorraso (en metros)":"Pared (en metros)";
