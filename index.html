@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Plano de placas para pared</title>
+<title>Plano de placas para revestimiento</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <main>
-<h1 id="ttl">Plano de placas para la pared</h1>
+<h1 id="ttl">Plano de placas para revestimiento</h1>
 <p class="sub">Elegí desde dónde empezar a colocar y mirá el plano con los cortes.</p>
 
 <div class="grid">
@@ -26,8 +26,8 @@
 
 <fieldset><legend id="lgW">Pared (en metros)</legend>
 <div class="row">
-<label>Ancho (m)<input id="pw" type="number" min="0" step="0.01" value="3.5"></label>
-<label><span id="lbH">Alto (m)</span><input id="ph" type="number" min="0" step="0.01" value="2.5"></label>
+<label>Ancho (m)<input id="pw" type="number" min="0" step="0.01" value=""></label>
+<label><span id="lbH">Alto (m)</span><input id="ph" type="number" min="0" step="0.01" value=""></label>
 </div></fieldset>
 
 <fieldset><legend>Placa (en centímetros)</legend>
@@ -40,7 +40,7 @@
 <div class="row">
 <label id="lmode">Disposición
 <select id="mode"><option value="stag">Intercalada (cada fila corrida media placa)</option><option value="grid">Alineada (juntas a plomo)</option></select></label>
-<label id="ljt">Junta (mm)<input id="jt" type="number" min="0" step="any" value="2"></label>
+<label id="ljt">Junta (mm)<input id="jt" type="number" min="0" step="any" value="0"></label>
 </div>
 <div class="row">
 <label>Empezar a lo ancho
@@ -52,7 +52,7 @@
 <fieldset><legend>Compra</legend>
 <div class="row">
 <label>Margen extra por roturas (%)<input id="wa" type="number" min="0" step="any" value="5"></label>
-<label>Corte mínimo deseado (cm)<input id="mc" type="number" min="0" step="any" value="15"></label>
+<label>Corte mínimo deseado (cm)<input id="mc" type="number" min="0" step="any" value="0"></label>
 </div></fieldset>
 <fieldset id="est" hidden><legend id="lgE">Estructura del cielorraso</legend>
 <div class="row" id="er1">
@@ -73,9 +73,9 @@
 
 <section class="res" id="res" aria-live="polite"></section>
 <section class="draw"><div id="svg"></div>
-<div class="leg"><span><i style="background:var(--tile)"></i>Placa entera</span><span><i style="background:var(--cut)"></i>Placa cortada (medida del trozo que queda colocado, en cm)</span><span id="legc" hidden><i style="background:var(--accent)"></i>Larguero &nbsp; <i style="background:var(--ink);opacity:.6"></i>Cortito &nbsp; <i style="background:#d98a1c"></i>Moldura</span></div></section>
+<div class="leg"><span><i style="background:var(--tile)"></i>Placa entera</span><span><i style="background:var(--cut)"></i>Placa cortada (medida del corte que queda colocado, en cm)</span><span id="legc" hidden><i style="background:var(--accent)"></i>Larguero &nbsp; <i style="background:var(--ink);opacity:.6"></i>Cortito &nbsp; <i style="background:#d98a1c"></i>Moldura</span></div></section>
 </main>
-<footer>Creado por X</footer>
+<footer>Creado por Agustin_Inaba_</footer>
 
 <script src="script.js"></script>
 </body>
