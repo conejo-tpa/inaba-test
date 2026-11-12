@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Plano de placas para revestimiento</title>
+<title>Plano de placas para pared</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <main>
-<h1 id="ttl">Plano de placas para revestimiento</h1>
+<h1 id="ttl">Plano de placas para la pared</h1>
 <p class="sub">Elegí desde dónde empezar a colocar y mirá el plano con los cortes.</p>
 
 <div class="grid">
@@ -26,33 +26,37 @@
 
 <fieldset><legend id="lgW">Pared (en metros)</legend>
 <div class="row">
-<label>Ancho (m)<input id="pw" type="number" min="0" step="0.01" value=""></label>
-<label><span id="lbH">Alto (m)</span><input id="ph" type="number" min="0" step="0.01" value=""></label>
+<label>Ancho (m)<input id="pw" type="number" min="0" step="0.01" value="3.5"></label>
+<label><span id="lbH">Alto (m)</span><input id="ph" type="number" min="0" step="0.01" value="2.5"></label>
 </div></fieldset>
 
 <fieldset><legend>Placa (en centímetros)</legend>
 <div class="row">
-<label>Ancho (cm)<input id="tw" type="number" min="0" step="any" value="60"></label>
-<label>Alto (cm)<input id="th" type="number" min="0" step="any" value="60"></label>
+<label>Tipo de placa
+<select id="preset"><option value="custom">1. Personalizada</option><option value="small">2. Placas chicas (ej: Travertino)</option><option value="brick">3. Ladrillo - Pizarra</option><option value="large" selected>4. Placas grandes (ej: Verona)</option></select></label>
+</div>
+<div class="row">
+<label>Ancho (cm)<input id="tw" type="number" min="0" step="any" placeholder="ej: 60" value="60"></label>
+<label>Alto (cm)<input id="th" type="number" min="0" step="any" placeholder="ej: 60" value="60"></label>
 </div></fieldset>
 
 <fieldset><legend>Colocación</legend>
 <div class="row">
 <label id="lmode">Disposición
 <select id="mode"><option value="stag">Intercalada (cada fila corrida media placa)</option><option value="grid">Alineada (juntas a plomo)</option></select></label>
-<label id="ljt">Junta (mm)<input id="jt" type="number" min="0" step="any" value="0"></label>
+<label id="ljt">Junta (mm)<input id="jt" type="number" min="0" step="any" value="2"></label>
 </div>
 <div class="row">
 <label>Empezar a lo ancho
-<select id="sx"><option value="center">Centrado</option><option value="left">Desde la izquierda</option><option value="right">Desde la derecha</option></select></label>
+<select id="sx"><option value="center">Centrado</option><option value="left" selected>Desde la izquierda</option><option value="right">Desde la derecha</option></select></label>
 <label>Empezar a lo alto
-<select id="sy"><option value="center">Centrado</option><option value="bottom">Desde abajo</option><option value="top">Desde arriba</option></select></label>
+<select id="sy"><option value="center">Centrado</option><option value="bottom" selected>Desde abajo</option><option value="top">Desde arriba</option></select></label>
 </div></fieldset>
 
 <fieldset><legend>Compra</legend>
 <div class="row">
 <label>Margen extra por roturas (%)<input id="wa" type="number" min="0" step="any" value="5"></label>
-<label>Corte mínimo deseado (cm)<input id="mc" type="number" min="0" step="any" value="0"></label>
+<label>Corte mínimo deseado (cm)<input id="mc" type="number" min="0" step="any" value="15"></label>
 </div></fieldset>
 <fieldset id="est" hidden><legend id="lgE">Estructura del cielorraso</legend>
 <div class="row" id="er1">
@@ -69,13 +73,24 @@
 <select id="sp"><option value="no">No empalmar (un solo larguero por línea)</option><option value="si">Empalmar</option></select></label>
 </div>
 <p class="note" id="spmsg" hidden></p></fieldset>
+<fieldset class="wide" id="fop"><legend>Aberturas (puertas, ventanas, huecos)</legend>
+<div class="opadd">
+<button type="button" class="btn" data-add="puerta">+ Puerta</button>
+<button type="button" class="btn" data-add="ventana">+ Ventana</button>
+<button type="button" class="btn" data-add="otro">+ Otro hueco</button>
+</div>
+<div id="ops"></div>
+<div class="row" id="ctrrow" hidden><label>Centrar el plano respecto de
+<select id="ctr"><option value="wall">La pared (o el cielorraso)</option><option value="op">La abertura más ancha</option></select></label></div>
+<p class="note">Las medidas van en cm. "Desde la izquierda" se mide desde el borde izquierdo y "Desde abajo" desde el piso (en una puerta es 0). Las placas que caen dentro de un hueco no se cuentan.</p>
+</fieldset>
 </div>
 
 <section class="res" id="res" aria-live="polite"></section>
 <section class="draw"><div id="svg"></div>
-<div class="leg"><span><i style="background:var(--tile)"></i>Placa entera</span><span><i style="background:var(--cut)"></i>Placa cortada (medida del corte que queda colocado, en cm)</span><span id="legc" hidden><i style="background:var(--accent)"></i>Larguero &nbsp; <i style="background:var(--ink);opacity:.6"></i>Cortito &nbsp; <i style="background:#d98a1c"></i>Moldura</span></div></section>
+<div class="leg"><span><i style="background:var(--tile)"></i>Placa entera</span><span><i style="background:var(--cut)"></i>Placa cortada (medida del trozo que queda colocado, en cm)</span><span><i style="background:repeating-linear-gradient(45deg,var(--mute) 0 2px,var(--card) 2px 5px)"></i>Abertura</span><span id="legc" hidden><i style="background:var(--accent)"></i>Larguero &nbsp; <i style="background:var(--ink);opacity:.6"></i>Cortito &nbsp; <i style="background:#d98a1c"></i>Moldura</span></div></section>
 </main>
-<footer>Creado por Agustin_Inaba_</footer>
+<footer>Creado por X</footer>
 
 <script src="script.js"></script>
 </body>

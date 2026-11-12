@@ -3,6 +3,16 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 footer{text-align:center;color:var(--mute);font-size:.85rem;padding:8px 16px 28px}
+.wide{grid-column:1/-1}
+.btn{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.opadd{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.op{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:10px 0}
+.oph{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.oph select{max-width:220px;margin:0}
+.opg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:640px){.opg{grid-template-columns:1fr 1fr}}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Segoe UI",system-ui,-apple-system,Arial,sans-serif}
 main{max-width:900px;margin:0 auto;padding:20px 16px 40px}
